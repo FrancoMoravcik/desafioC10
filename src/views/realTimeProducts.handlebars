@@ -1,0 +1,75 @@
+<div>
+    <form id="form">
+        <div>
+            <label for="title">Nombre del producto</label>
+            <input type="text" name="title" id="title" required>
+        </div>
+
+        <div>
+            <label for="description">Descripcion</label>
+            <input type="text" name="description" id="description" required>
+        </div>
+
+        <div>
+            <label for="price">Precio</label>
+            <input type="text" name="price" id="price" required>
+        </div>
+
+        <div>
+            <label>Imagen</label>
+            <input name="thumbnail" id="thumbnailInput" type="file">
+        </div>
+
+        <div>
+            <label for="stock">Stock</label>
+            <input type="text" name="stock" id="stock" required>
+        </div>
+
+        <div>
+            <label for="code">Codigo</label>
+            <input type="text" name="code" id="code" required>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+
+
+
+<section>
+    <h1>PRODUCTS</h1>
+
+    <div id="productList">
+        {{#if products}}
+        {{#each products}}
+        <div id="products">
+            <a href="#">
+                <img src="{{this.thumbnail}}" alt="" />
+            </a>
+            <div>
+                <a href="#">
+                    <h5>{{this.title}}</h5>
+                </a>
+                <p>{{this.description}}</p>
+                <p><b>stock:</b> {{this.stock}}</p>
+                <p><b>price: $</b>{{this.price}}</p>
+                <div>
+                    <button id="btnDelete" onclick="deleteProduct({{this.id}})">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        {{/each}}
+        {{else}}
+        <div>
+            <h2>NO HAY PRODUCTOS</h2>
+        </div>
+        {{/if}}
+    </div>
+
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/RealTimeProducts.js"></script>
